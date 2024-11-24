@@ -86,19 +86,29 @@ app.get('/fetchDealers', async (req, res) => {
   });
   
   // Express route to fetch a dealership by a particular ID
-  app.get('/fetchDealer/:id', async (req, res) => {
-    try {
-      const id = req.params.id;
-      const dealership = await Dealerships.findById(id); // Fetch dealership by ID
-      if (!dealership) {
-        return res.status(404).json({ message: 'Dealer not found' });
-      }
-      res.status(200).json(dealership);
-    } catch (error) {
-      console.error('Error fetching dealership by ID:', error);
-      res.status(500).json({ error: 'An error occurred while fetching dealership by ID' });
+  const mongoose = require('mongoose');
+
+// Express route to fetch a dealership by a particular ID
+app.get('/fetchDealer/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    // Check if the ID is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid dealership ID format' });
     }
-  });
+
+    const dealership = await Dealerships.findById(id); // Fetch dealership by ID
+
+    if (!dealership) {
+      return res.status(404).json({ message: 'Dealer not found' });
+    }
+    res.status(200).json(dealership);
+  } catch (error) {
+    console.error('Error fetching dealership by ID:', error);
+    res.status(500).json({ error: 'An error occurred while fetching dealership by ID' });
+  }
+});
 
 //Express route to insert review
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
