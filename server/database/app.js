@@ -85,8 +85,6 @@ app.get('/fetchDealers', async (req, res) => {
     }
   });
   
-  // Express route to fetch a dealership by a particular ID
-  const mongoose = require('mongoose');
 
 // Express route to fetch a dealership by a particular ID
 app.get('/fetchDealer/:id', async (req, res) => {
