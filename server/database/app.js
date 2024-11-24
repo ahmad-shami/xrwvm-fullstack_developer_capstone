@@ -89,19 +89,23 @@ app.get('/fetchDealers', async (req, res) => {
 // Express route to fetch a dealership by a particular ID
 app.get('/fetchDealer/:id', async (req, res) => {
     try {
-      const id = parseInt(req.params.id, 10); // Convert the ID to an integer
+      const dealershipId = parseInt(req.params.id, 10); // Convert the ID to an integer
   
-      if (isNaN(id)) {
-        return res.status(400).json({ error: 'Invalid numeric ID format' });
+      // Check if the ID is a valid number
+      if (isNaN(dealershipId)) {
+        return res.status(400).json({ error: 'Invalid dealership ID format' });
       }
   
-      const dealership = await Dealerships.findOne({ customId: id }); // Query by customId
+      // Query the Dealerships collection using the `id` field
+      const dealership = await Dealerships.findOne({ id: dealershipId });
+  
       if (!dealership) {
         return res.status(404).json({ message: 'Dealer not found' });
       }
+  
       res.status(200).json(dealership);
     } catch (error) {
-      console.error('Error fetching dealership by custom ID:', error);
+      console.error('Error fetching dealership by ID:', error);
       res.status(500).json({ error: 'An error occurred while fetching dealership by ID' });
     }
   });
