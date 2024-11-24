@@ -59,37 +59,44 @@ app.get('/fetchReviews/dealer/:id', async (req, res) => {
 // Express route to fetch all dealerships
 app.get('/fetchDealers', async (req, res) => {
     try {
-      const documents = await Dealerships.find(); // Fetch all dealerships
-      res.json(documents);
+      const dealerships = await Dealerships.find(); // Fetch all dealerships
+      if (dealerships.length === 0) {
+        return res.status(404).json({ message: 'No dealerships found' });
+      }
+      res.status(200).json(dealerships);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Error fetching dealers' });
+      console.error('Error fetching dealerships:', error);
+      res.status(500).json({ error: 'An error occurred while fetching dealerships' });
     }
   });
   
   // Express route to fetch dealerships by a particular state
   app.get('/fetchDealers/:state', async (req, res) => {
     try {
-      const documents = await Dealerships.find({ state: req.params.state }); // Filter dealerships by state
-      res.json(documents);
+      const state = req.params.state;
+      const dealerships = await Dealerships.find({ state }); // Filter dealerships by state
+      if (dealerships.length === 0) {
+        return res.status(404).json({ message: `No dealerships found in state: ${state}` });
+      }
+      res.status(200).json(dealerships);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: `Error fetching dealers for state: ${req.params.state}` });
+      console.error(`Error fetching dealerships for state: ${req.params.state}`, error);
+      res.status(500).json({ error: `An error occurred while fetching dealerships for state: ${req.params.state}` });
     }
   });
   
   // Express route to fetch a dealership by a particular ID
   app.get('/fetchDealer/:id', async (req, res) => {
     try {
-      const document = await Dealerships.findById(req.params.id); // Fetch dealership by ID
-      if (document) {
-        res.json(document);
-      } else {
-        res.status(404).json({ error: 'Dealer not found' });
+      const id = req.params.id;
+      const dealership = await Dealerships.findById(id); // Fetch dealership by ID
+      if (!dealership) {
+        return res.status(404).json({ message: 'Dealer not found' });
       }
+      res.status(200).json(dealership);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Error fetching dealer by ID' });
+      console.error('Error fetching dealership by ID:', error);
+      res.status(500).json({ error: 'An error occurred while fetching dealership by ID' });
     }
   });
 
