@@ -26,29 +26,28 @@
 from django.db import models
 
 class CarMake(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    # Other fields as needed
+    name = models.CharField(max_length=100)  # Name of the car make
+    description = models.TextField()  # Description of the car make
+    country = models.CharField(max_length=50, blank=True, null=True)  # Optional: Country of origin
 
     def __str__(self):
-        return self.name  # Return the name as the string representation
+        return f"{self.name} - {self.description}"
 
 class CarModel(models.Model):
-    car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-One relationship
-    name = models.CharField(max_length=100)
-    CAR_TYPES = [
-        ('SEDAN', 'Sedan'),
+    TYPE_CHOICES = [
+        ('Sedan', 'Sedan'),
         ('SUV', 'SUV'),
-        ('WAGON', 'Wagon'),
-        # Add more choices as required
+        ('Wagon', 'Wagon'),
+        ('Truck', 'Truck'),
+        ('Coupe', 'Coupe'),
     ]
-    type = models.CharField(max_length=10, choices=CAR_TYPES, default='SUV')
-    year = models.IntegerField(default=2023,
-        validators=[
-            MaxValueValidator(2023),
-            MinValueValidator(2015)
-        ])
-    # Other fields as needed
+
+    make = models.ForeignKey(CarMake, on_delete=models.CASCADE)  # Many-to-one relationship
+    dealer_id = models.IntegerField()  # Refers to a dealer ID in Cloudant
+    name = models.CharField(max_length=100)  # Name of the car model
+    car_type = models.CharField(max_length=10, choices=TYPE_CHOICES)  # Type of the car
+    year = models.DateField()  # Manufacturing year
+    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)  # Optional: Price
 
     def __str__(self):
-        return self.name  # Return the name as the string representation
+        return f"{self.name} ({self.car_type}) - {self.make.name} ({self.year.year})"
