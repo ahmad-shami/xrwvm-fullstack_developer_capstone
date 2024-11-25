@@ -25,6 +25,7 @@
 # - __str__ method to print a car make object
 from django.db import models
 
+
 class CarMake(models.Model):
     name = models.CharField(max_length=100)  # Name of the car make
     description = models.TextField()  # Description of the car make
@@ -46,8 +47,11 @@ class CarModel(models.Model):
     dealer_id = models.IntegerField()  # Refers to a dealer ID in Cloudant
     name = models.CharField(max_length=100)  # Name of the car model
     car_type = models.CharField(max_length=10, choices=TYPE_CHOICES)  # Type of the car
-    year = models.DateField()  # Manufacturing year
+    year = models.IntegerField()  # Manufacturing year
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)  # Optional: Price
 
     def __str__(self):
-        return f"{self.name} ({self.car_type}) - {self.make.name} ({self.year.year})"
+    # Match the object creation structure for consistent representation
+      return f"CarModel(name='{self.name}', car_type='{self.car_type}', year={self.year}, make='{self.make.name}')"
+
+      

@@ -63,14 +63,33 @@ def login_user(request):
 # Create a `add_review` view to submit a review
 # def add_review(request):
 # ...
+
+
 from .models import CarMake, CarModel
+from .populate import initiate  # Ensure correct import for initiate function
+
 def get_cars(request):
+    # Check if CarMake data exists
     count = CarMake.objects.filter().count()
-    print(count)
-    if(count == 0):
-        initiate()
-    car_models = CarModel.objects.select_related('car_make')
+    if count == 0:
+        initiate()  # Populate data if empty
+
+    # Fetch all CarModel objects with related CarMake data
+    car_models = CarModel.objects.select_related('make')
+
+    # Prepare a list of car details
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
-    return JsonResponse({"CarModels":cars})
+        cars.append({
+            "CarModel": car_model.name,
+            "CarMake": car_model.make.name,
+            "Type": car_model.car_type,
+            "Year": car_model.year,
+            "Price": car_model.price,
+            "MakeDescription": car_model.make.description,
+            "MakeCountry": car_model.make.country if hasattr(car_model.make, "country") else None,
+            "MakeEstablishedYear": car_model.make.established_year if hasattr(car_model.make, "established_year") else None,
+        })
+
+    # Return the car details as a JSON response
+    return JsonResponse({"CarModels": cars})
