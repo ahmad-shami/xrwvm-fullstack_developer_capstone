@@ -19,6 +19,7 @@ from .populate import initiate
 from .restapis import get_request, analyze_review_sentiments, post_review
 
 
+
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -41,9 +42,12 @@ def login_user(request):
         data = {"userName": username, "status": "Authenticated"}
     return JsonResponse(data)
 
+
+
 # Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
+def logout_request(request):
+    data = {"userName":""}
+    return JsonResponse(data)
 
 # Create a `registration` view to handle sign up request
 # @csrf_exempt
@@ -128,3 +132,5 @@ def add_review(request):
             return JsonResponse({"status":401,"message":"Error in posting review"})
     else:
         return JsonResponse({"status":403,"message":"Unauthorized"})
+
+    

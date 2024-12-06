@@ -7,7 +7,22 @@
 <script>
 
 const logout = async (e) => {
-//Include the code for logout here.
+    let logout_url = window.location.origin+"/djangoapp/logout";
+  const res = await fetch(logout_url, {
+    method: "GET",
+  });
+
+  const json = await res.json();
+  if (json) {
+    let username = sessionStorage.getItem('username');
+    sessionStorage.removeItem('username');
+    window.location.href = window.location.origin;
+    window.location.reload();
+    alert("Logging out "+username+"...")
+  }
+  else {
+    alert("The user could not be logged out.")
+  }
 };
 
 let checkSession = ()=>{
@@ -23,6 +38,7 @@ let checkSession = ()=>{
     '<a class="homepage_links"  href="/register">Register</a>'
   }
  }
+
 </script>
 </head>
 <body onload="checkSession()">
@@ -61,4 +77,7 @@ let checkSession = ()=>{
 </div>
 </div>
 </body>
+
+
 </html>
+

@@ -26,12 +26,16 @@ from djangoapp import views
 
 
 
+
 urlpatterns = [
     
     path('login/', view=TemplateView.as_view(template_name="index.html")),
     path(route='login', view=views.login_user, name='login'),
+
     path('admin/', admin.site.urls),
     path('djangoapp/', include('djangoapp.urls')),
+    path('login/', view=TemplateView.as_view(template_name="index.html")),
+    path(route='login', view=views.login_user, name='login'),
     path('dealers/', TemplateView.as_view(template_name="index.html")),
     path('dealer/', TemplateView.as_view(template_name="index.html")),
     path('', TemplateView.as_view(template_name="Home.html")),
