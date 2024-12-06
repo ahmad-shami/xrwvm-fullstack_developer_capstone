@@ -10,8 +10,8 @@ from django.contrib.auth import logout
 
 
 
-#from django.http import JsonResponse
-#from django.contrib.auth import login, authenticate
+from django.http import JsonResponse
+from django.contrib.auth import login, authenticate
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
