@@ -7,6 +7,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import logout
 #from django.contrib import messages
 #from datetime import datetime
+import os
+from django.conf import settings
 
 
 
@@ -173,3 +175,14 @@ def get_dealer_reviews(request, dealer_id):
         return JsonResponse({"status":200,"reviews":reviews})
     else:
         return JsonResponse({"status":400,"message":"Bad Request"})
+
+def register_view(request):
+    index_path = os.path.join(settings.BASE_DIR, 'static', 'index.html') 
+
+    try:
+        with open(index_path, 'r') as f:
+            html_content = f.read()
+    except FileNotFoundError:
+        return HttpResponse("Error: index.html not found", status=404)
+
+    return HttpResponse(html_content)

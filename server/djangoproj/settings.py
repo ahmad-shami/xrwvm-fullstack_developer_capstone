@@ -31,12 +31,12 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'https://shamiahmad-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
-    'https://shamiahmad-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/',
+    'https://shamiahmad-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://shamiahmad-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
-    'https://shamiahmad-8000.theianext-1-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai/',
+    'https://shamiahmad-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+
 ]
 
 REST_FRAMEWORK = {
@@ -137,11 +137,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'frontend', 'static')
-MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
-MEDIA_URL = '/media/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'frontend', 'static')
+#MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+#MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -149,11 +149,18 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #STATICFILES_DIRS = [
-  #  os.path.join(BASE_DIR, 'frontend/static'),
- #   os.path.join(BASE_DIR, 'frontend/build'),
-  #  os.path.join(BASE_DIR, 'frontend/build/static'),
+#    os.path.join(BASE_DIR, 'frontend/static'),
+#    os.path.join(BASE_DIR, 'frontend/build'),
+#    os.path.join(BASE_DIR, 'frontend/build/static'),
 #]
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media') 
+MEDIA_URL = '/media/'
+ 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
+    os.path.join(BASE_DIR, 'frontend/static'),
+    os.path.join(BASE_DIR, 'frontend/build'),
+    os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
