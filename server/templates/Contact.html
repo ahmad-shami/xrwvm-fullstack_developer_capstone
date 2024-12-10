@@ -1,0 +1,77 @@
+<html>
+<head>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+    <div class="container-fluid">
+      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <body>
+    <!-- Contact Us Content -->
+    <div class="container mt-5">
+        <div class="card shadow-sm" style="border-radius: 10px; overflow: hidden;">
+            <!-- Top Image Section -->
+            <img 
+                src="/static/cars.jpeg" 
+                class="card-img-top img-fluid" 
+                alt="Car Dealership"
+            />
+
+            <!-- Content Section -->
+            <div class="card-body">
+                <!-- Row for Content -->
+                <div class="row align-items-center">
+                    <!-- Left Column: Icon -->
+                    <div class="col-md-6 text-center">
+                        <img 
+                            src="/static/support.jpg" 
+                            alt="Customer Service Icon" 
+                            class="img-fluid" 
+                            style="width: 150px; height: auto;"
+                        />
+                    </div>
+
+                    <!-- Vertical Divider -->
+                    <div class="col-md-1 d-none d-md-block" style="border-left: 2px solid #ccc; height: 150px;"></div>
+
+                    <!-- Right Column: Contact Information -->
+                    <div class="col-md-5">
+                        <h4 class="text-primary">Contact Information</h4>
+                        <p><strong>Customer Service:</strong> ahmad@alshami.website</p>
+                        <p><strong>National Advertising Team:</strong> ahmad@alshami.website</p>
+                        <p><strong>Public Relations Team:</strong> ahmad@alshami.website</p>
+                        <p><strong>Office:</strong> 312-611-1111</p>
+                        <p><strong>Become a Dealer:</strong> <a href="https://growwithbestcars.com" target="_blank">growwithbestcars.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="text-center mt-5">
+        <p>© 2024 Best Cars Dealership. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>
