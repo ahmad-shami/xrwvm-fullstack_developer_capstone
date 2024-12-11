@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp -r build/static/* build && rm -rf build/static && cp -r build/index.html ../templates",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 
 import "./Login.css";
 import Header from '../Header/Header';
+import { getEnvironment } from '../../config';
 
 const Login = ({ onClose }) => {
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [open,setOpen] = useState(true)
-
-  // let login_url = window.location.origin+"/djangoapp/login";
-  let login_url = "http://127.0.0.1:8000/djangoapp/login";
+  
+  let login_url = `${getEnvironment.django_api_url}/djangoapp/login`;
 
   const login = async (e) => {
     e.preventDefault();

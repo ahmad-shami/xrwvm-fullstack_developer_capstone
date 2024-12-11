@@ -3,16 +3,15 @@ import "./Dealers.css";
 import "../assets/style.css";
 import Header from '../Header/Header';
 import review_icon from "../assets/reviewicon.png"
+import { getEnvironment } from '../../config';
 
 const Dealers = () => {
   const [dealersList, setDealersList] = useState([]);
   // let [state, setState] = useState("")
   let [states, setStates] = useState([])
-
-  // let root_url = window.location.origin
-  let dealer_url ="http://127.0.0.1:8000/djangoapp/get_dealers";
   
-  let dealer_url_by_state = "http://127.0.0.1:8000/djangoapp/get_dealers/";
+  let dealer_url =`${getEnvironment.django_api_url}/djangoapp/get_dealers`;
+  let dealer_url_by_state = `${getEnvironment.django_api_url}/djangoapp/get_dealers/`;
  
   const filterDealers = async (state) => {
     dealer_url_by_state = dealer_url_by_state+state;
