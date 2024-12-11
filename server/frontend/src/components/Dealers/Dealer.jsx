@@ -16,13 +16,16 @@ const Dealer = () => {
   const [unreviewed, setUnreviewed] = useState(false);
   const [postReview, setPostReview] = useState(<></>)
 
-  let curr_url = window.location.href;
-  let root_url = curr_url.substring(0,curr_url.indexOf("dealer"));
+  // let curr_url = window.location.href;
+  // let root_url = curr_url.substring(0,curr_url.indexOf("dealer"));
   let params = useParams();
   let id =params.id;
-  let dealer_url = root_url+`djangoapp/dealer/${id}`;
-  let reviews_url = root_url+`djangoapp/reviews/dealer/${id}`;
-  let post_review = root_url+`postreview/${id}`;
+  // let dealer_url = root_url+`djangoapp/dealer/${id}`;
+  // let reviews_url = root_url+`djangoapp/reviews/dealer/${id}`;
+  // let post_review = root_url+`postreview/${id}`;
+  let dealer_url = `http://127.0.0.1:8000/djangoapp/dealer/${id}`;
+  let reviews_url = `http://127.0.0.1:8000/djangoapp/reviews/dealer/${id}`;
+  let post_review = `http://127.0.0.1:3000/postreview/${id}`;
   
   const get_dealer = async ()=>{
     const res = await fetch(dealer_url, {
@@ -43,7 +46,7 @@ const Dealer = () => {
     const retobj = await res.json();
     
     if(retobj.status === 200) {
-      if(retobj.reviews.length > 0){
+      if(retobj?.reviews?.length > 0){
         setReviews(retobj.reviews)
       } else {
         setUnreviewed(true);

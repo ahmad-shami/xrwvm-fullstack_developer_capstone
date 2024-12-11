@@ -18,17 +18,12 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
-#from django.urls import path, include
 from django.contrib import admin
 from djangoapp import views   
 from django.views.generic import TemplateView
 from django.views.static import serve
 
-
-
-
 urlpatterns = [
-    
     path('login/', view=TemplateView.as_view(template_name="index.html")),
     path(route='login', view=views.login_user, name='login'),
     path('admin/', admin.site.urls),
@@ -36,7 +31,6 @@ urlpatterns = [
     path('login/', view=TemplateView.as_view(template_name="index.html")),
     path(route='login', view=views.login_user, name='login'),
     path('dealers/', TemplateView.as_view(template_name="index.html")),
-    path('dealer/', TemplateView.as_view(template_name="index.html")),
     path('', TemplateView.as_view(template_name="Home.html")),
     path('about/', TemplateView.as_view(template_name="About.html")),
     path('contact/', TemplateView.as_view(template_name="Contact.html")),
@@ -48,16 +42,4 @@ urlpatterns = [
     path('dealer/<int:dealer_id>',TemplateView.as_view(template_name="index.html")),
     path('manifest.json', TemplateView.as_view(template_name="manifest.json", content_type="application/json")),
     path('postreview/<int:dealer_id>',TemplateView.as_view(template_name="index.html")),
-    
-    #re_path(r'^register/$', serve, kwargs={'path': 'index.html', 'document_root': settings.STATIC_ROOT}),
-    #path('signup/', views.register_view, name='register')
-    
-
-
-
-
-    
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-

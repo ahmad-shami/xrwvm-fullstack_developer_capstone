@@ -9,7 +9,8 @@ const Login = ({ onClose }) => {
   const [password, setPassword] = useState("");
   const [open,setOpen] = useState(true)
 
-  let login_url = window.location.origin+"/djangoapp/login";
+  // let login_url = window.location.origin+"/djangoapp/login";
+  let login_url = "http://127.0.0.1:8000/djangoapp/login";
 
   const login = async (e) => {
     e.preventDefault();
@@ -50,6 +51,7 @@ const Login = ({ onClose }) => {
         }}
         className='modalContainer'
       >
+      <h1>hello!</h1>
           <form className="login_panel" style={{}} onSubmit={login}>
               <div>
               <span className="input_field">Username </span>
