@@ -13,6 +13,6 @@ const environments = {
     },
 };
 
-const getEnvironment = environments.development;
+const getEnvironment = environments.production;
 
 export { getEnvironment };
