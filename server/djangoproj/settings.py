@@ -31,20 +31,22 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'localhost:3000',
+    'http://dealership.ahmad.alshami.website:3000',
     'https://shamiahmad-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+    'http://dealership.ahmad.alshami.website:3030/',
 
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Replace with your React app's origin
+    'http://dealership.ahmad.alshami.website:3000',
+    'http://dealership.ahmad.alshami.website:8000',
 ]
 
 CORS_ALLOW_CREDENTIALS = True 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://shamiahmad-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
-
+    'http://dealership.ahmad.alshami.website:3000',
+    'http://dealership.ahmad.alshami.website:8000',
 ]
 
 REST_FRAMEWORK = {
