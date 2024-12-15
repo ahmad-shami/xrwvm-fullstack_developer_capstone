@@ -36,7 +36,7 @@ ALLOWED_HOSTS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://dealership.ahmad.alshami.website:3000',
+    'http://94.203.133.222:3000',
     'http://dealership.ahmad.alshami.website:8000',
     'http://94.203.133.222:8000',
 ]
@@ -44,7 +44,7 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True 
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://dealership.ahmad.alshami.website:3000',
+    'http://94.203.133.222:3000',
     'http://dealership.ahmad.alshami.website:8000',
     'http://94.203.133.222:8000',
 ]
