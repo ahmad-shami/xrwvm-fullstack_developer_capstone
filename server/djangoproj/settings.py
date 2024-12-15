@@ -39,6 +39,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://94.203.133.222:3000',
     'http://dealership.ahmad.alshami.website:8000',
     'http://94.203.133.222:8000',
+    'http://94.203.133.222:3030',
 ]
 
 CORS_ALLOW_CREDENTIALS = True 
@@ -47,6 +48,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://94.203.133.222:3000',
     'http://dealership.ahmad.alshami.website:8000',
     'http://94.203.133.222:8000',
+    'http://94.203.133.222:3030',
 ]
 
 REST_FRAMEWORK = {
