@@ -31,10 +31,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'http://dealership.ahmad.alshami.website:8000',
-    'http://94.203.133.222:8000',
-    'http://dealership.ahmad.alshami.website:3030/',
-
+    'dealership.ahmad.alshami.website',
+    '94.203.133.222',
 ]
 
 CORS_ALLOWED_ORIGINS = [
