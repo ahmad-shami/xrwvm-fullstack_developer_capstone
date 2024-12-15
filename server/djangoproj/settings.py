@@ -31,8 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'http://dealership.ahmad.alshami.website:3000',
-    'https://shamiahmad-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+    'http://dealership.ahmad.alshami.website:8000',
     'http://dealership.ahmad.alshami.website:3030/',
 
 ]
