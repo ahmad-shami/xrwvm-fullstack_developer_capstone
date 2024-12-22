@@ -1,0 +1,5 @@
+Flask==2.0.2
+transformers
+torch
+keras==2.12.0
+Werkzeug==2.2.2
