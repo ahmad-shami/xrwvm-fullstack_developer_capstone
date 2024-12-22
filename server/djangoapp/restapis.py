@@ -42,14 +42,50 @@ def get_request(endpoint, **kwargs):
 
 
 def analyze_review_sentiments(text):
-    request_url = sentiment_analyzer_url+"analyze/"+text
-    try:
+   request_url = sentiment_analyzer_url+"analyze/"+text
+   try:
         # Call get method of requests library with URL and parameters
-        response = requests.get(request_url)
-        return response.json()
-    except Exception as err:
-        print(f"Unexpected {err=}, {type(err)=}")
-        print("Network exception occurred")
+       response = requests.get(request_url)
+
+       if "sentiment" in result:
+       	   result["sentiment"] = result["sentiment"].lower()
+
+       return response.json()
+
+   except Exception as err:
+       print(f"Unexpected {err=}, {type(err)=}")
+       print("Network exception occurred")
+
+#def analyze_review_sentiments(text):
+#    request_url = sentiment_analyzer_url + "analyze/" + text
+#    try:
+        # Call the GET method of the requests library
+#        response = requests.get(request_url)
+#        response.raise_for_status()  # Raise an exception for HTTP errors
+        
+        # Parse the JSON response
+#        result = response.json()
+        
+        # Validate the presence of expected keys in the response
+#        if "sentiment" in result and "confidence" in result:
+#            return result
+#        else:
+#            return {"sentiment": "unknown", "confidence": 0.0, "error": "Missing keys in response"}
+    
+#    except requests.exceptions.RequestException as e:
+        # Handle HTTP and network-related errors
+#        print(f"Network exception occurred: {e}")
+#        return {"sentiment": "error", "confidence": 0.0, "error": str(e)}
+#    except ValueError as e:
+        # Handle JSON decoding errors
+#        print(f"Error decoding JSON response: {e}")
+#        return {"sentiment": "error", "confidence": 0.0, "error": "Invalid JSON response"}
+#    except Exception as e:
+        # Catch any other unexpected exceptions
+#        print(f"Unexpected error: {e}")
+#        return {"sentiment": "error", "confidence": 0.0, "error": str(e)}
+
+
 
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
