@@ -42,19 +42,23 @@ def get_request(endpoint, **kwargs):
 
 
 def analyze_review_sentiments(text):
-   request_url = sentiment_analyzer_url+"analyze/"+text
-   try:
+    request_url = sentiment_analyzer_url + "analyze/" + text
+    try:
         # Call get method of requests library with URL and parameters
-       response = requests.get(request_url)
-
-       if "sentiment" in result:
-       	   result["sentiment"] = result["sentiment"].lower()
-
-       return response.json()
-
-   except Exception as err:
-       print(f"Unexpected {err=}, {type(err)=}")
-       print("Network exception occurred")
+        response = requests.get(request_url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        result = response.json()
+        
+        # Ensure the result contains the 'sentiment' key
+        if "sentiment" in result:
+            return result
+        else:
+            return {"sentiment": "unknown", "confidence": 0.0}
+    except Exception as err:
+        print(f"Unexpected {err=}, {type(err)=}")
+        print("Network exception occurred")
+        # Return a default response in case of failure
+        return {"sentiment": "error", "confidence": 0.0}
 
 #def analyze_review_sentiments(text):
 #    request_url = sentiment_analyzer_url + "analyze/" + text
@@ -88,17 +92,19 @@ def analyze_review_sentiments(text):
 
 
 def get_dealer_reviews(request, dealer_id):
-    # if dealer id has been provided
-    if(dealer_id):
-        endpoint = "/fetchReviews/dealer/"+str(dealer_id)
+    # If dealer ID is provided
+    if dealer_id:
+        endpoint = "/fetchReviews/dealer/" + str(dealer_id)
         reviews = get_request(endpoint)
         for review_detail in reviews:
             response = analyze_review_sentiments(review_detail['review'])
             print(response)
-            review_detail['sentiment'] = response['sentiment']
-        return JsonResponse({"status":200,"reviews":reviews})
+            
+            # Safely assign sentiment
+            review_detail['sentiment'] = response.get("sentiment", "unknown")
+        return JsonResponse({"status": 200, "reviews": reviews})
     else:
-        return JsonResponse({"status":400,"message":"Bad Request"})
+        return JsonResponse({"status": 400, "message": "Bad Request"})
 
 def post_review(data_dict):
     request_url = backend_url+"/insert_review"
