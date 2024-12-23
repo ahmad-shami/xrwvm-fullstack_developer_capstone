@@ -20,7 +20,7 @@ spec:
         run: dealership
     spec:
       containers:
-      - image: us.icr.io/your-name-space/dealership:latest
+      - image: us.icr.io/sn-labs-shamiahmad/dealership:latest
         imagePullPolicy: Always
         name: dealership
         ports:
