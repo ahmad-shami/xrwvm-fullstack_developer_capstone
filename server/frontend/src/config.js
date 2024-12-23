@@ -4,7 +4,7 @@ const environments = {
     production: {
         nodejs_api_url: "http://94.203.133.222:3030",
         django_api_url: "http://94.203.133.222:8000",
-        frontend_url: "http://94.203.133.222:3000"
+        frontend_url: "http://94.203.133.222:3030"
     },
     development: {
         nodejs_api_url: "http://dealership.ahmad.alshami.website:3030",
