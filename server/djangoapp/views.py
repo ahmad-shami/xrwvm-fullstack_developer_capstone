@@ -17,7 +17,7 @@ import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
-from .restapis import get_request, analyze_review_sentiments, post_review
+from .restapis import get_request, analyze_review_sentiments
 
 
 
@@ -69,7 +69,7 @@ def registration(request):
         username_exist = True
     except Exception as e:
         # If not, simply log this is a new user
-        logger.debug("{e} is new user".format(username))
+        logger.debug(f"{e} {username} is new user")
 
     # If it is a new user
     if not username_exist:
