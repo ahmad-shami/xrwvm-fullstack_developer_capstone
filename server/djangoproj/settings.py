@@ -32,22 +32,23 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'dealership.ahmad.alshami.website',
-    '94.203.133.222',
+    'shamiahmad-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+    'shamiahmad-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://94.203.133.222:3000',
+    'https://shamiahmad-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
     'http://dealership.ahmad.alshami.website:8000',
-    'http://94.203.133.222:8000',
+    'https://shamiahmad-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
     'http://94.203.133.222:3030',
 ]
 
 CORS_ALLOW_CREDENTIALS = True 
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://94.203.133.222:3000',
+    'https://shamiahmad-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
     'http://dealership.ahmad.alshami.website:8000',
-    'http://94.203.133.222:8000',
+    'https://shamiahmad-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
     'http://94.203.133.222:3030',
 ]
 
