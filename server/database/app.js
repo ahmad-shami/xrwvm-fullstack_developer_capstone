@@ -9,14 +9,18 @@ const port = 3030;
 
 // Middleware
 app.use(cors());
-app.use(require('body-parser').urlencoded({ extended: false }));
+app.use(express.json());
 
 // Load data
 const reviewsData = JSON.parse(fs.readFileSync('reviews.json', 'utf8'));
 const dealershipsData = JSON.parse(fs.readFileSync('dealerships.json', 'utf8'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'dealershipsDB', useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://mongo_db:27017/', { 
+  dbName: 'dealershipsDB', 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
 
 // Import models
 const Reviews = require('./review');
@@ -99,9 +103,9 @@ app.get('/fetchDealer/:id', async (req, res) => {
   }
 });
 
-app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
+app.post('/insert_review', async (req, res) => {
   try {
-    const data = JSON.parse(req.body);
+    const data = req.body;
     const documents = await Reviews.find().sort({ id: -1 });
     const newId = (documents[0]?.id || 0) + 1;
 
