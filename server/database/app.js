@@ -16,7 +16,7 @@ const reviewsData = JSON.parse(fs.readFileSync('reviews.json', 'utf8'));
 const dealershipsData = JSON.parse(fs.readFileSync('dealerships.json', 'utf8'));
 
 // Connect to MongoDB
-mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'dealershipsDB' });
+mongoose.connect('mongodb://mongo_db:27017/', { dbName: 'dealershipsDB', useNewUrlParser: true, useUnifiedTopology: true });
 
 // Import models
 const Reviews = require('./review');
@@ -103,7 +103,7 @@ app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   try {
     const data = JSON.parse(req.body);
     const documents = await Reviews.find().sort({ id: -1 });
-    const newId = documents[0]?.id + 1 || 1;
+    const newId = (documents[0]?.id || 0) + 1;
 
     const review = new Reviews({
       id: newId,
