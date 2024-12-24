@@ -108,7 +108,7 @@ app.post('/insert_review', async (req, res) => {
   try {
     const data = req.body;
     const documents = await Reviews.find().sort({ id: -1 });
-    const newId = (documents[0]?.id || 0) + 1;
+    const newId = (documents[0] && documents[0].id ? documents[0].id : 0) + 1;
 
     const review = new Reviews({
       id: newId,
