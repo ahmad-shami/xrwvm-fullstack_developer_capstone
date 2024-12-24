@@ -71,7 +71,11 @@ def registration(request):
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
+        user = User.objects.create_user(username=username, 
+                                        first_name=first_name, 
+                                        last_name=last_name, 
+                                        password=password, 
+                                        email=email)
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
@@ -100,8 +104,13 @@ def get_cars(request):
             "Year": car_model.year,
             "Price": car_model.price,
             "MakeDescription": car_model.make.description,
-            "MakeCountry": car_model.make.country if hasattr(car_model.make, "country") else None,
-            "MakeEstablishedYear": car_model.make.established_year if hasattr(car_model.make, "established_year") else None,
+            "MakeCountry": car_model.make.country 
+            if hasattr(car_model.make, "country") 
+            else 
+            None,
+            "MakeEstablishedYear": car_model.make.established_year 
+            if hasattr(car_model.make, "established_year") 
+            else None,
         })
 
     # Return the car details as a JSON response
