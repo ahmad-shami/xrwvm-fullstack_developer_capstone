@@ -25,7 +25,6 @@ logger = logging.getLogger(__name__)
 
 # Create a `login_request` view to handle sign in request
 @csrf_exempt
-
 def login_user(request):
     # Get username and password from request.POST dictionary
     data = json.loads(request.body)
@@ -48,7 +47,6 @@ def logout_request(request):
 
 # Create a `registration` view to handle sign up request
 @csrf_exempt
-
 def registration(request):
     data = json.loads(request.body)
     username = data['userName']
