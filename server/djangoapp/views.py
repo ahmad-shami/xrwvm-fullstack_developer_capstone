@@ -72,10 +72,8 @@ def registration(request):
     if not username_exist:
         # Create user in auth_user table
         user = User.objects.create_user(username=username, 
-                                        first_name=first_name, 
-                                        last_name=last_name, 
-                                        password=password, 
-                                        email=email)
+        first_name=first_name, last_name=last_name, 
+        password=password, email=email)
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
