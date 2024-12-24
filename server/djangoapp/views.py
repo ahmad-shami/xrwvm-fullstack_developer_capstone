@@ -25,6 +25,7 @@ logger = logging.getLogger(__name__)
 
 # Create a `login_request` view to handle sign in request
 @csrf_exempt
+
 def login_user(request):
     # Get username and password from request.POST dictionary
     data = json.loads(request.body)
@@ -40,12 +41,14 @@ def login_user(request):
     return JsonResponse(data)
 
 # Create a `logout_request` view to handle sign out request
+
 def logout_request(request):
     data = {"userName": ""}
     return JsonResponse(data)
 
 # Create a `registration` view to handle sign up request
 @csrf_exempt
+
 def registration(request):
     data = json.loads(request.body)
     username = data['userName']
@@ -74,6 +77,7 @@ def registration(request):
         data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(data)
 
+
 def get_cars(request):
     # Check if CarMake data exists
     count = CarMake.objects.filter().count()
@@ -100,6 +104,7 @@ def get_cars(request):
     # Return the car details as a JSON response
     return JsonResponse({"CarModels": cars})
 
+
 def get_dealerships(request, state="All"):
     if state == "All":
         endpoint = "/fetchDealers"
@@ -108,6 +113,7 @@ def get_dealerships(request, state="All"):
     dealerships = get_request(endpoint)
     return JsonResponse({"status": 200, "dealers": dealerships})
 
+
 def get_dealer_details(request, dealer_id):
     if dealer_id:
         endpoint = f"/fetchDealer/{dealer_id}"
@@ -115,6 +121,7 @@ def get_dealer_details(request, dealer_id):
         return JsonResponse({"status": 200, "dealer": dealership})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
+
 
 def add_review(request):
     if not request.user.is_anonymous:
@@ -126,6 +133,7 @@ def add_review(request):
             return JsonResponse({"status": 401, "message": "Error in posting review"})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
+
 
 def get_dealer_reviews(request, dealer_id):
     if not dealer_id:
@@ -141,6 +149,7 @@ def get_dealer_reviews(request, dealer_id):
         reviews = []
 
     return JsonResponse({"status": 200, "reviews": reviews})
+
 
 def register_view(request):
     index_path = os.path.join(settings.BASE_DIR, 'static', 'index.html')
